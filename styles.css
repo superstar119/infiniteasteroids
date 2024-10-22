@@ -1,0 +1,1480 @@
+body {
+    /* margin: 0; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #000;
+    color: #fff;
+    /* font-family: Arial, sans-serif; */
+    flex-direction: column;
+    font-family: 'Press Start 2P';
+
+
+}
+
+#technologiesCount,
+#loginInfo {
+    position: absolute;
+    top: 15px;
+    color: white;
+    font-size: 10px;
+    z-index: 20;
+    font-family: 'Press Start 2P', cursive;
+}
+
+#technologiesCount {
+    top: 9px;
+
+}
+
+.top-left {
+    position: absolute;
+    top: 19px;
+    left: 60px;
+}
+
+
+#loginInfo {
+    top: 50px;
+    /* Adjust position as needed */
+    left: 10px;
+}
+
+.top-right {
+    position: absolute;
+    top: 19px;
+    right: 10px;
+    z-index: 25;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+
+
+}
+
+.hidden {
+    display: none;
+}
+
+#game-list {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+}
+
+.game-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.game-item img {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.game-item a {
+    color: #800080;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+#auth,
+#game-section {
+    width: 90%;
+    max-width: 600px;
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00ff00;
+    text-align: center;
+    margin: 20px;
+}
+
+h1,
+h2 {
+    margin-top: 0;
+    padding-top: 5px;
+    font-size: 24px;
+    color: #800080;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+input {
+    display: block;
+    width: calc(100% - 22px);
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 16px;
+    background: #222;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+}
+
+/* button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #00ff00;
+    color: #111;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  } */
+
+button:hover {
+    background: #00cc00;
+}
+
+#technologiesCount {
+    right: 10px;
+}
+
+/* #shipType {
+    left: 10px;
+    top: 19px;
+} */
+
+.ship-preview {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#shipPreviewCanvas {
+    border: 2px solid #444;
+    border-radius: 10px;
+    background-color: #2a2a2a;
+}
+
+
+#shipTypeContainer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 1000;
+    /* Ensure it's above other elements */
+}
+
+#miniShipPreview {
+    margin-right: 10px;
+    width: 40px;
+    /* Set a fixed width */
+    height: 40px;
+    /* Set a fixed height */
+}
+
+#shipType {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: #fff;
+    /* Ensure text is visible on dark backgrounds */
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden
+        /* Prevent scrolling */
+}
+
+canvas {
+    border: 1px solid black;
+    background-color: black;
+    -webkit-transform: translate3d(0, 0, 0); /* Triggers hardware acceleration */
+}
+
+/* Joystick styling */
+#joystick {
+    position: absolute;
+    bottom: 30px;
+    /* Closer to the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    /* Increased width by 40% */
+    height: 140px;
+    /* Increased height by 40% */
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 3px solid #fff;
+    border-radius: 50%;
+    display: none;
+    /* Hide by default */
+}
+
+/* #settingsModal {
+
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(24, 20, 20, 0.9);
+    z-index: 1000;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+
+}
+
+#settingsModal input[type="range"] {
+    width: 80%;
+} */
+
+#joystick-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    /* Adjusted inner circle size */
+    height: 60px;
+    /* Adjusted inner circle size */
+    background-color: white;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    /* Added border for better visibility */
+}
+
+#joystick .handle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    /* Increased width by 40% */
+    height: 70px;
+    /* Increased height by 40% */
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+#marketplace {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #111;
+    /* Dark background */
+    padding: 20px;
+    border: 3px solid #4e15ac;
+    /* Red border */
+    color: #0f0;
+    /* Green text color */
+    width: 90%;
+    max-width: 400px;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+    /* Arcade font */
+
+    text-align: center;
+}
+
+#marketplace h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#marketplace p,
+#marketplace button {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+#marketplace button {
+    background-color: #222;
+    /* Dark button background */
+    color: #0f0;
+    /* Green text color */
+    border: 2px solid #f00;
+    /* Red border */
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    /* Arcade font */
+}
+
+#marketplace button:hover {
+    background-color: #333;
+    /* Slightly lighter background on hover */
+}
+
+.flashing-arrow {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid red;
+    border-width: 2px 2px 0 0;
+    transform: rotate(45deg);
+    display: none;
+    animation: flash 0.7s infinite;
+}
+
+@keyframes flash {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+#restartButton {
+    /* position: absolute; */
+    /* bottom: 10%; */
+    align-items: center;
+    /* transform: translate(-50%, -50%); */
+    padding: 20px 40px;
+    font-size: 15px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#startScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    color: white;
+    z-index: 10;
+    background-color: #111;
+    /* Dark background */
+    padding: 20px;
+    color: #0f0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+    /* Arcade font */
+    text-align: center;
+    overflow-y: auto;
+}
+
+
+
+#startScreen h2 {
+    font-size: 3em;
+    /* Increased heading size */
+    margin-bottom: 20px;
+}
+
+#startScreen p {
+    font-size: 1.5em;
+    /* Increased paragraph size */
+    margin-bottom: 20px;
+}
+
+#startScreen button {
+    font-size: 0.9em;
+    /* Increased button text size */
+    padding: 10px 20px;
+}
+
+#endScreen {
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: #111;
+    color: #0f0;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    overflow-y: auto;
+    opacity: 0.9;
+}
+
+#endScreen h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+#endScreen p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+#endScreen button {
+    font-size: 0.9em;
+    padding: 10px 20px;
+    margin-top: 10px;
+    /* Added margin for space between buttons */
+}
+
+#leaderboard-container {
+    display: block;
+    /* Hidden initially, will be shown by JS */
+    position: relative;
+    /* Changed to relative since it is now within endScreen */
+    background-color: #111;
+    padding: 20px;
+    border: 3px solid rgb(234, 0, 255);
+    color: #0f0;
+    width: 90%;
+    max-width: 600px;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+}
+
+#leaderboard h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#leaderboard ol {
+    list-style: none;
+    padding: 0;
+}
+
+#leaderboard ol li {
+    font-size: 14px;
+    margin: 10px 0;
+    border-bottom: 1px solid #f00;
+    padding-bottom: 5px;
+}
+
+#results {
+    display: none;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #111;
+    /* Dark background */
+    padding: 20px;
+    border: 3px solid #f00;
+    /* Red border */
+    color: #0f0;
+    /* Green text color */
+    width: 90%;
+    max-width: 400px;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+    /* Arcade font */
+    text-align: center;
+}
+
+#xpBarContainer {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 20px;
+    background-color: #333;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+}
+
+#xpBar {
+    width: 0;
+    height: 100%;
+    background-color: #0f0;
+    transition: width 0.5s ease;
+    /* Smooth transition effect */
+}
+
+
+
+#startScreen button:disabled {
+    color: rgba(16, 16, 16, 0.3) !important;
+    background-color: rgba(239, 239, 239, 0.3) !important;
+    border-color: rgba(118, 118, 118, 0.3) !important;
+    cursor: not-allowed !important;
+}
+
+
+button {
+    background-color: #222;
+    color: #0f0;
+    border: 2px solid #4e15ac;
+    padding: 10px;
+    margin: 10px 0;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 16px;
+}
+
+.weaponClassIcon {
+    display: inline-block;
+    width: 36px;
+    /* Ensure the size matches the canvas */
+    height: 36px;
+    /* Ensure the size matches the canvas */
+    margin-right: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* background-color: white; */
+    /* Black background */
+    border-radius: 50%;
+    /* Make icons circular */
+    position: relative;
+    /* Relative position to add cooldown indicator */
+    z-index: 2;
+    /* Ensure icon is on top */
+}
+
+.cooldown-indicator {
+    position: absolute;
+    top: -5px;
+    /* Adjust to move up */
+    left: -5px;
+    /* Adjust to move left */
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-sizing: border-box;
+    z-index: 1;
+    /* Ensure cooldown indicator is behind the icon */
+    pointer-events: none;
+    /* Make sure it doesn't block interactions */
+}
+
+/* Position the bottom icons container */
+.bottom-icons {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    /* Center align horizontally */
+    transform: translateX(-50%);
+    z-index: 1001;
+    /* Ensure icons are on top */
+    display: flex;
+    /* Use flexbox for layout */
+    justify-content: center;
+    /* Center align the icons */
+    /* gap: 10px; /* Add spacing between icons */
+    */
+}
+
+
+.icon-explosive {
+    background-image: url('icons/exploding_laser_22.png');
+}
+
+.icon-turret {
+    background-image: url('icons/turret_icon_pink.png');
+}
+
+.icon-drone {
+    background-image: url('icons/laserdrone.png');
+}
+
+.icon-bomberdrone {
+    background-image: url('icons/bomber-drone-con.png');
+}
+
+.icon-sonic {
+    background-image: url('icons/sonic-icon.png');
+}
+
+.icon-deathray {
+    background-image: url('icons/death_ray_22.png');
+}
+
+.icon-acid {
+    background-image: url('icons/acid-bomb-icon.png');
+}
+
+.icon-boomerang {
+    background-image: url('icons/boomerang-icon-2.png');
+}
+
+.icon-freeze {
+    background-image: url('icons/freeze_22.png');
+}
+
+.icon-chainlightning {
+    background-image: url('icons/forked_lightning_22.png');
+
+}
+
+.icon-flamethrower {
+    background-image: url('icons/flamethrower_2_22.png');
+}
+
+.icon-explosiverocket {
+    background-image: url('icons/exploding_rocket_22.png');
+}
+
+.icon-plasmacannon {
+    background-image: url('icons/plasma_cannon.png');
+}
+
+.icon-gravitywell {
+    background-image: url('icons/gravity_well.png');
+}
+
+.icon-cryobomb {
+    background-image: url('icons/cryo_bomb.png');
+}
+
+.icon-gravityblast {
+    background-image: url('icons/gravity_blast.png');
+}
+
+.icon-chainofflame {
+    background-image: url('icons/chain_of_flame.png');
+}
+
+.icon-explodrone {
+    background-image: url('icons/explo_drone.png');
+}
+
+.icon-sonicboom {
+    background-image: url('icons/upgrades/sonicboomerang_22.png');
+}
+
+.icon-ship {
+    background-image: url('icons/ship-icon.png');
+}
+
+.icon-basiclaser {
+    background-image: url('icons/basic-laser-icon.png');
+}
+
+.icon-nanoswarm {
+    background-image: url('icons/nano_swarm_22.png');
+}
+
+.icon-droneArmy {
+    background-image: url('icons/drone_army_icon.png');
+}
+
+.icon-doubleTurret {
+    background-image: url('icons/upgrades/double_turret.png');
+}
+
+.icon-tripleTurret {
+    background-image: url('icons/upgrades/triple_turret.png');
+}
+
+.icon- {
+    background-image: url('icons/basic-laser-icon.png');
+}
+
+.icon-secondary-weapon-clusterBomb {
+    background-image: url('icons/upgrades/cluster_bomb.png');
+}
+
+.icon-secondary-weapon-bomb {
+    background-image: url('icons/secondary/bomb_icon_2.png');
+}
+
+.icon-secondary-weapon-invincibilityShield {
+    background-image: url('icons/secondary/invinciblity_icon.png');
+}
+
+.icon-secondary-weapon-piercingLaser {
+    background-image: url('icons/secondary/splitting_laser.png');
+}
+
+.icon-secondary-weapon-eloBomb {
+    background-image: url('icons/secondary/bomb_icon_3.png');
+}
+
+.iconContainer {
+    position: relative;
+    display: inline-block;
+    margin-right: 10px;
+
+}
+
+.upgradeCount {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: yellow;
+    color: black;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 1;
+}
+
+#achievementsContainer {
+    margin-top: 20px;
+    /* max-height: 300px; */
+    /* Adjust this height as needed */
+    overflow-y: auto;
+}
+
+/* #achievementsContainer {
+margin-top: 20px;
+text-align: left;
+} */
+
+#allLeaderboardsContainer {
+    max-height: 400px;
+    /* Set a fixed height or adjust as necessary */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    scrollbar-width: thin;
+    /* Optional: For Firefox */
+    -ms-overflow-style: auto;
+    /* Optional: For IE and Edge */
+}
+
+#achievementsList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.achievement {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #222;
+    color: #0f0;
+
+}
+
+.achievement span {
+    font-size: 12px;
+    /* Adjust the font size as needed */
+}
+
+
+.achievement img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+#weaponInfo {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(24, 20, 20, 0.9);
+    z-index: 1000;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#weaponInfo h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+#weaponsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.weapon-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.weapon {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+}
+
+.weapon-icon {
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.weapon-info {
+    flex-grow: 1;
+}
+
+.weapon-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 12px;
+    color: #ffffff;
+}
+
+.weapon-info p {
+    margin: 0;
+    font-size: 9px;
+    color: #aaaaaa;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+}
+
+#rouletteContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#planet {
+    width: 170px;
+    height: 170px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 1) 0%, rgba(128, 0, 0, 1) 100%);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+#rouletteIcons {
+    /* position: relative; */
+    width: 100%;
+    height: 100%;
+}
+
+#upgradeDisplay {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 80%;
+    opacity: 0.8;
+    z-index: 100;
+    font-family: 'Press Start 2P', cursive;
+
+}
+
+
+.upgrade-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.upgrade-text {
+    margin-top: 5px;
+    margin-left: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: white;
+}
+
+#spinButton {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 200;
+}
+
+#bottomContent {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 13px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#waveCounter {
+    margin-right: 20px;
+}
+
+#coinsDisplay {
+    margin-left: 20px;
+}
+
+#livesDisplay {
+    margin-right: 90px;
+}
+
+#controlsInfo {
+    margin-left: auto;
+}
+
+/* display: flex;
+flex-wrap: wrap;
+gap: 10px;
+margin-bottom: 20px;
+}
+ */
+#upgradeOptions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+/* .upgrade-item {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    width: calc(33.333% - 10px);
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: background-color 0.3s;
+} */
+
+.upgrade-item:hover {
+    background-color: #e0e0e0;
+}
+
+.upgrade-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.upgrade-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8B008B;
+    margin-right: 10px;
+    min-width: 30px;
+    text-align: center;
+}
+
+.upgrade-icon {
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 15px;
+    /* Add space between icon and text */
+    flex-shrink: 0;
+    /* Prevent the icon from shrinking */
+}
+
+.upgrade-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 1;
+    /* Make the details take up remaining space */
+}
+
+.upgrade-details h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #00FF00;
+}
+
+.upgrade-details p {
+    margin: 5px 0 0 0;
+}
+
+.upgrade-name {
+    font-size: 18px;
+    color: #00FF00;
+    margin-bottom: 5px;
+}
+
+.upgrade-name-small {
+    font-size: 14px;
+    color: #00FF00;
+    margin-bottom: 5px;
+}
+
+
+.upgrade-description {
+    font-size: 14px;
+    color: #8dc53a;
+}
+
+
+.upgrade-description-small {
+    font-size: 11px;
+    color: #ADFF2F;
+}
+
+.upgrade-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.upgrade-info p {
+    margin: 0;
+    font-size: 12px;
+}
+
+#upgradeModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.mega-upgrade-option {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    /* Ensure it takes up the full modal width */
+    box-sizing: border-box;
+}
+
+.mega-upgrade-option:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+.upgrade-content {
+    display: flex;
+    align-items: center;
+    /* Align items in a row */
+    width: 100%;
+    /* Ensure content fills the container */
+}
+
+
+
+
+/* @keyframes flash {
+
+    0%,
+    100% {
+        background-color: transparent;
+    }
+
+    50% {
+        background-color: yellow;
+    }
+} */
+
+.flash {
+    animation: flash 1s ease-in-out;
+}
+
+.selection-section {
+    margin-bottom: 20px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #2a2a2a;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+#saveSelections {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 5x;
+}
+
+#saveSelections:hover {
+    background-color: #45a049;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.overlay-content {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+}
+
+.instructions {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.instruction-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.instruction-image {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 5px;
+}
+
+.arrow-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.arrow-image {
+    width: 50px;
+    height: 50px;
+    transform: rotate(90deg);
+    /* Rotate arrow to point right */
+}
+
+#startGameButton {
+    margin-top: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #ff4500;
+    color: white;
+    border-radius: 5px;
+}
+
+.achievement {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+.achievement-description {
+    font-size: 14px;
+}
+
+#achievementIconsList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+    /* Adjust this value as needed */
+    margin: 10px auto;
+}
+
+.icons-section {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.icons-section h4 {
+    text-align: center;
+    margin-bottom: 5px;
+    color: #0f0;
+    /* Matching your green text color */
+}
+
+.achievement-icon {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin: 2px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.achievement-icon.unachieved {
+    filter: grayscale(100%) opacity(0.5);
+}
+
+.selector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+#gameModeButton {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.achievement-icon.unachieved {
+    filter: grayscale(100%) opacity(0.5);
+}
+
+
+.selector span {
+    flex-grow: 1;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.selector button {
+    width: 30px;
+    height: 30px;
+    background-color: #purple;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.selection-section h4 {
+    margin-bottom: 2px;
+}
+
+
+h4 {
+    color: white;
+
+}
+
+#shipCustomizationSection,
+#gameModeSection {
+    margin-bottom: 5px;
+}
+
+
+#pastScoresModal .modal-content {
+    max-height: 80vh;
+    /* Set a max height for the modal content */
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    padding: 20px;
+    font-size: 8px;
+
+}
+
+#pastScoresModal {
+    display: none;
+    /* Initially hidden */
+    position: fixed;
+    z-index: 1000;
+    /* left: 0;
+    top: 0; */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#pastScoresModal .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Set the width of the modal */
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.nav-btn {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+h4 {
+    display: block;
+    margin-block-start: .8em;
+    margin-block-end: .8em;
+    font-size: .7em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+/* .nav-btn:hover {
+    background-color: #555; */
+
+/* Style for mobile buttons */
+#mobile-controls {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    display: none;
+    /* So it doesn't interfere with non-mobile inputs */
+}
+
+.mobile-btn {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 40px;
+    pointer-events: all;
+    outline: none;
+}
+
+#steer-left {
+    bottom: 50px;
+    right: 100px;
+}
+
+#steer-right {
+    bottom: 50px;
+    right: 30px;
+}
+
+#accelerate {
+    bottom: 50px;
+    left: 30px;
+}
+
+#steer-left,
+#steer-right,
+#accelerate {
+    touch-action: manipulation;
+    /* Prevents zooming and panning */
+    user-select: none;
+    /* Prevents text selection (optional, good for button interactions) */
+}
+
+.achievement-stats {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.achievement-stats h3 {
+    margin-top: 0;
+    color: #FFD700;
+}
+
+.achievement-stats ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.achievement-stats li {
+    margin-bottom: 5px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.75), rgba(0, 0, 0, 0));
+    margin: 20px 0;
+}
+
+#weaponDamageChartModal .modal-content {
+    background-color: #111;
+    color: #fff;
+    border: 1px solid #444;
+}
+
+#weaponDamageChart {
+    width: 100%;
+    height: 400px;
+    background-color: #000;
+}
+
+.element {
+    scrollbar-width: none;
+}
+
+.element {
+    -ms-overflow-style: none;
+}
+
+body {
+    scrollbar-width: none;
+}

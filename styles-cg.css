@@ -1,0 +1,161 @@
+/* General modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: var(--modal-width, 80%);
+    max-width: 600px;
+    /* height: 95vh; */
+    /* Full viewport height */
+    background-color: #111;
+    border: 3px solid #4e15ac;
+    color: #0f0;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    opacity: 0.95;
+    overflow: hidden;
+    /* Prevent overflow of the modal itself */
+}
+
+/* Class to show modal when needed */
+.modal.show {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Align content at the top */
+}
+
+/* Modal content should fill remaining space and scroll if necessary */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    /* Allow scrolling for long content */
+    font-size: clamp(var(--min-font-size), calc(var(--base-font-size) * 0.8), var(--max-font-size));
+    align-items: center;
+}
+
+/* Adjust spacing for headers */
+.modal h2,
+.modal h3,
+.modal p {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: clamp(0.8rem, 2vw, 1.5rem);
+    /* Dynamically scale with viewport */
+}
+
+/* Buttons inside modal content */
+.modal-content button {
+    background-color: #222;
+    color: #0f0;
+    border: 2px solid #4e15ac;
+    padding: 8px clamp(0.8rem, 2vw, 1.2rem);
+    /* Dynamic button padding */
+    width: 100%;
+    cursor: pointer;
+    font-size: clamp(0.6rem, 1.5vw, 1rem);
+    /* Button font size scales too */
+}
+
+
+@media only screen and (max-width: 768px) {
+    .modal {
+        height: 95vh;
+    }
+}
+
+
+
+/* Adjustments for mobile landscape mode */
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+    .modal {
+        height: 95vh;
+        /* Full viewport height in landscape mode */
+        width: 100vw;
+        /* Full viewport width */
+        max-width: none;
+        /* Remove the max-width constraint */
+        padding: 10px;
+    }
+
+    .modal h2,
+    .modal h3,
+    .modal p {
+        font-size: clamp(0.7rem, 2vw, 1.3rem);
+        /* Slightly smaller text in landscape */
+    }
+
+    .modal-content button {
+        font-size: clamp(0.6rem, 1.2vw, 0.9rem);
+        padding: 6px clamp(0.6rem, 1vw, 1rem);
+        /* Adjust padding for smaller screens */
+    }
+
+    /* Adjust icons and image sizes */
+    .upgrade-icon {
+        width: clamp(40px, 10vw, 60px);
+        /* Dynamically resize icons */
+        height: clamp(40px, 10vw, 60px);
+    }
+
+    .upgrade-option {
+        font-size: clamp(0.7rem, 1.5vw, 1.1rem);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Adjust layout for smaller screens in landscape mode */
+    .modal-content {
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+}
+
+/* Style for upgrade options and similar items */
+.upgrade-option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    font-size: clamp(0.7rem, 1.5vw, 1.1rem);
+    /* Dynamic scaling */
+}
+
+.upgrade-icon {
+    width: clamp(50px, 10vw, 70px);
+    height: clamp(50px, 10vw, 70px);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 15px;
+}
+
+.upgrade-details {
+    flex-grow: 1;
+}
+
+.upgrade-name {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    /* Scale the upgrade names */
+}
+
+.upgrade-description {
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    /* Scale the description size */
+}
+
+/* Ensure buttons are aligned properly and shrink with viewport */
+.modal-content button {
+    margin-top: auto;
+    padding: 8px clamp(0.6rem, 1.5vw, 1rem);
+    font-size: clamp(0.7rem, 1.5vw, 1rem);
+}
