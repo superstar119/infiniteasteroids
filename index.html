@@ -1955,7 +1955,7 @@
     // }
 
 
-    async function saveUserScore(gameData) {
+    async function saveUserScore(gameid , gameData) {
       if (crazyGamesMode) {
         const user = await window.CrazyGames.SDK.user.getUser();
         if (user && user.username) {
