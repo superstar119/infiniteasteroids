@@ -65,7 +65,7 @@
 }
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-height: 520px) and (orientation:landscape) {
     .modal {
         height: 95vh;
     }
@@ -158,4 +158,21 @@
     margin-top: auto;
     padding: 8px clamp(0.6rem, 1.5vw, 1rem);
     font-size: clamp(0.7rem, 1.5vw, 1rem);
+}
+
+
+/* model style for entry wrapper */
+#allLeaderboardsContainer .leaderboard-mode{
+    display: flex;
+    flex-direction: column;
+}
+.entryWrapper{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 15px;
+}
+.entryWrapper p{
+    font-size: 10px;
+    text-align: left;
 }
