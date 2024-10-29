@@ -338,9 +338,15 @@ function startGame() {
     }
 
     if (isMobile()) {
-
         const mobileControls = document.getElementById('mobile-controls');
-        if (mobileControls) mobileControls.style.display = 'block';
+        const mobilePause = document.getElementById('mobile-pause');
+        console.log('mobile display triggered' , mobilePause , mobilePause.style.display)
+        if (mobileControls) {
+            mobileControls.style.display = 'block';
+        }
+        if(mobilePause){
+            mobilePause.style.display = 'block'
+        }
     }
 
     if (document.getElementById('endScreen'))
@@ -3038,8 +3044,18 @@ function drawDamageReport() {
     });
 }
 
+function pauseToggle() {
+    if (isPaused) {
+        resumeGame();
+        document.getElementById("mobile-pause-img").src = "/icons/pause.png";
+        document.getElementById("mobile-pause-img").alt = "pause";
+    } else {
+        pauseGame();
+        document.getElementById("mobile-pause-img").src = "/icons/play.png";
+        document.getElementById("mobile-pause-img").alt = "play";
 
-
+    }
+}
 
 
 
