@@ -311,6 +311,9 @@ let droneUpgrades = {
 
 let lastCurrentShip = 'basic';
 
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
 
 // Game loop
 function startGame() {
@@ -463,10 +466,13 @@ function startGame() {
     }
 
     resumeGame();
-
-    if (!toggleMusicOff)
-        backgroundMusic.play(); // Play the background music
-    isMusicPlaying = true;
+    
+    
+    if (!isMobile()) {
+        if (!toggleMusicOff)
+            backgroundMusic.play(); // Play the background music
+        isMusicPlaying = true;
+    }
 }
 
 // TEMP:(?) disable resize. Re-enable for crazy games.
@@ -1057,7 +1063,7 @@ function updateShip(ship, leftKey, rightKey, upKey, downKey, shootKey) {
 
     if (keys[upKey] || (ship === ship && touchAccelerating)) {
 
-        if (!toggleMusicOff && !bossMusicEnabled) backgroundMusic.play();
+        // if (!toggleMusicOff && !bossMusicEnabled) backgroundMusic.play();
         playRandomThrusterSound();
 
         let accelerationAmount = ship.acceleration;
