@@ -338,15 +338,9 @@ function startGame() {
     }
 
     if (isMobile()) {
+
         const mobileControls = document.getElementById('mobile-controls');
-        const mobilePause = document.getElementById('mobile-pause');
-        console.log('mobile display triggered' , mobilePause , mobilePause.style.display)
-        if (mobileControls) {
-            mobileControls.style.display = 'block';
-        }
-        if(mobilePause){
-            mobilePause.style.display = 'block'
-        }
+        if (mobileControls) mobileControls.style.display = 'block';
     }
 
     if (document.getElementById('endScreen'))
@@ -1272,10 +1266,11 @@ function createAreaDamage(x, y, radius, damage = 1) {
 }
 function increaseXP(amount, isGem = false) {
     const currTimeInMS = Date.now();
+
     // Apply tapering based on wave number
     const taperingFactor = xpTaperingFactor();
     amount *= taperingFactor;
-    
+
     if (xp >= (xpToNextLevel / 1)) {
         if (lastLevelUp + 2000 > currTimeInMS) {
             amount *= 0.05;
@@ -1295,9 +1290,7 @@ function increaseXP(amount, isGem = false) {
         const upgradeModal = document.getElementById('upgradeModal');
         // only display levelup if upgrade modal is not open
         if (!upgradeModal || upgradeModal.style.display == "block") {
-            if(!gameOver){
-                levelUp();
-            }
+            levelUp();
 
         }
 
@@ -1617,9 +1610,8 @@ function handleKeyDown(event) {
         } else if (event.key === 'e' || event.key === 'E') {
             fireSecondaryWeapon(); // Use the selected secondary weapon
         } else if ((event.key === 'r' || event.key === 'R')) {
-            if (!gameOver){
+            if (!gameOver)
                 claimLevelUps(); // Claim level ups
-            }
         } else if ((event.key === 'o' || event.key === 'O') && normalDebugMode) {
 
 
@@ -3044,18 +3036,8 @@ function drawDamageReport() {
     });
 }
 
-function pauseToggle() {
-    if (isPaused) {
-        resumeGame();
-        document.getElementById("mobile-pause-img").src = "/icons/pause.png";
-        document.getElementById("mobile-pause-img").alt = "pause";
-    } else {
-        pauseGame();
-        document.getElementById("mobile-pause-img").src = "/icons/play.png";
-        document.getElementById("mobile-pause-img").alt = "play";
 
-    }
-}
+
 
 
 
